@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+
+    <record id="taecel_key" model="ir.config_parameter"> 
+        <field name="key">taecel_key</field>
+        <field name="value">6dce34dbc6cc3d6bd8de48fd011d0595</field>
+    </record>
+    <record id="taecel_nip" model="ir.config_parameter"> 
+        <field name="key">taecel_nip</field>
+        <field name="value">7fbb2c3531d73ab26044fac7dfe1a503</field>
+    </record>
+
+
+</odoo>

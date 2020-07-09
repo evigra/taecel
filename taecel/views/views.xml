@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_taecel_form" model="ir.ui.view">
+        <field name="name">taecel.form</field>
+        <field name="model">taecel</field>
+        <field name="arch" type="xml">
+            <form string="Product">                                                        
+                <field name="name" />
+                <field name="referencia"/>
+                <field name="mensaje1"/>
+                <field name="transID" />
+                <field name="folio" />
+                <field name="mensaje2" />
+                <field name="status" />
+            </form>
+        </field>
+    </record>
+
+    <record id='view_taecel_tree' model='ir.ui.view'>
+        <field name="name">taecel.tree</field>
+        <field name="model">taecel</field>
+        <field name="arch" type="xml">
+            <tree string="Models">
+                <field name="name" />
+                <field name="referencia"/>
+                <field name="mensaje1"/>
+                <field name="transID" />
+                <field name="folio" />
+                <field name="mensaje2" />
+                <field name="status" />                
+            </tree>
+        </field>
+    </record>
+</odoo>
