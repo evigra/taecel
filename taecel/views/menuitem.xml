@@ -2,4 +2,15 @@
 <odoo>
     
 
+    <record id='fleet_taecel_action' model='ir.actions.act_window'>
+        <field name="name">Histoy Map</field>
+        <field name="res_model">gpsmap.positions</field>
+    </record>
+    <menuitem action="fleet_taecel_action" parent="fleet.fleet_vehicles" id="=fleet_position_menu" groups="fleet.fleet_group_user"/>
+
+    <record id='fleet_speed_action' model='ir.actions.act_window'>
+        <field name="name">Speed</field>
+        <field name="res_model">gpsmap.speed</field>
+    </record>
+    <menuitem action="fleet_speed_action" parent="fleet.fleet_vehicles" id="=fleet_speed_menu" groups="fleet.fleet_group_user"/>
 </odoo>

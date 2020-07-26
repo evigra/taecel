@@ -65,7 +65,6 @@ class taecel(models.Model):
         c.setopt(pycurl.FOLLOWLOCATION, 1)
         c.perform()
         print(c.getinfo(pycurl.HTTP_CODE))
-        # --> 200
         print(c.getinfo(pycurl.EFFECTIVE_URL))
         
         certinfo = c.getinfo(pycurl.INFO_CERTINFO)
