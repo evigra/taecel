@@ -32,20 +32,14 @@ class taecel(models.Model):
         data = {
             'key':          taecel_key,
             'nip':          taecel_nip,
-            'producto':     taecel_nip,
-            'referencia':   taecel_nip,
-            'monto':        taecel_nip,
-        }
+            'producto':     vals["name"],
+            'referencia':   vals["referencia"],        }
         pf = urlencode(data)
 
-        """
-        # Sets request method to POST,
-        # Content-Type header to application/x-www-form-urlencoded
-        # and data to send in request body.
+
         crl.setopt(crl.POSTFIELDS, pf)
         crl.perform()
         crl.close()                
-        """
 
         return super(taecel, self).create(vals)
         
