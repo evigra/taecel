@@ -71,7 +71,7 @@ class taecel(models.Model):
         certinfo = c.getinfo(pycurl.INFO_CERTINFO)
         print(certinfo)        
         
-        #"""
+        """
         
                 
         
