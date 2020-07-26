@@ -9,18 +9,6 @@ from odoo import api, fields, models, _
 from urllib.parse import urlencode
 import pycurl
 
-class product_template(models.Model):
-    _inherit = "product.template"
-
-    def getProducts(self):
-        crl = pycurl.Curl()
-        crl.setopt(crl.URL, 'https://taecel.com/app/api/getProducts')
-
-        crl.perform()
-
-        print("#######",c.getinfo(pycurl))
-
-        
 
 class taecel(models.Model):
     _name = "taecel"
@@ -34,9 +22,6 @@ class taecel(models.Model):
     mensaje2                                    = fields.Char('mensaje2', size=150)
     status                                      = fields.Char('status', size=150)
     time                                        = fields.Datetime('Time')
-
-
-
     def create(self,vals):
         print('===========',vals)
         taecel_key                              =self.env['ir.config_parameter'].get_param('taecel_key','')
@@ -47,37 +32,20 @@ class taecel(models.Model):
         data = {
             'key':          taecel_key,
             'nip':          taecel_nip,
-            'producto':     vals["name"],
-            'referencia':   vals["referencia"],
+            'producto':     taecel_nip,
+            'referencia':   taecel_nip,
+            'monto':        taecel_nip,
         }
         pf = urlencode(data)
 
-
         """
+        # Sets request method to POST,
+        # Content-Type header to application/x-www-form-urlencoded
+        # and data to send in request body.
         crl.setopt(crl.POSTFIELDS, pf)
         crl.perform()
-
-        print("#######",c.getinfo(pycurl))
-            
-        c = pycurl.Curl()
-        c.setopt(pycurl.OPT_CERTINFO, 1)
-        
-        c.setopt(pycurl.FOLLOWLOCATION, 1)
-        c.perform()
-        print(c.getinfo(pycurl.HTTP_CODE))
-        print(c.getinfo(pycurl.EFFECTIVE_URL))
-        
-        certinfo = c.getinfo(pycurl.INFO_CERTINFO)
-        print(certinfo)        
-        
-        """
-        
-                
-        
-        
         crl.close()                
-        
-        
+        """
 
         return super(taecel, self).create(vals)
         
