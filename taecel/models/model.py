@@ -9,7 +9,6 @@ from odoo import api, fields, models, _
 from urllib.parse import urlencode
 import pycurl
 
-
 class taecel(models.Model):
     _name = "taecel"
     _description = 'TAECEL'
@@ -36,10 +35,8 @@ class taecel(models.Model):
             'referencia':   vals["referencia"],        }
         pf = urlencode(data)
 
-
         crl.setopt(crl.POSTFIELDS, pf)
         crl.perform()
         crl.close()                
 
-        return super(taecel, self).create(vals)
-        
+        return super(taecel, self).create(vals)        
