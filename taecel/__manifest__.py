@@ -29,13 +29,13 @@ Main Features
     'depends': [
         #'fleet',
     ],
-    'data': [
+    #'data': [
         #'security/solesgpsmap_security.xml',
         #'security/ir.model.access.csv',
         #'data/data.xml',
         #'views/solesgpsmap_menuitem.xml',
         #'views/views.xml',
-    ],
+    #],
     'installable': True,
     'application': True,
 }
