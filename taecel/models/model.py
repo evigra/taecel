@@ -23,20 +23,29 @@ class taecel(models.Model):
     time                                        = fields.Datetime('Time')
     def create(self,vals):
         print('===========',vals)
-        taecel_key                              =self.env['ir.config_parameter'].get_param('taecel_key','')
-        taecel_nip                              =self.env['ir.config_parameter'].get_param('taecel_nip','')
         
         crl = pycurl.Curl()
-        crl.setopt(crl.URL, 'https://taecel.com/app/api/RequestTXN')
-        data = {
-            'key':          taecel_key,
-            'nip':          taecel_nip,
-            'producto':     vals["name"],
-            'referencia':   vals["referencia"],        }
-        pf = urlencode(data)
+        
+        data_sesion = {
+            'key':          self.env['ir.config_parameter'].get_param('taecel_key',''),
+            'nip':          self.env['ir.config_parameter'].get_param('taecel_nip','')
+        }
 
+        data                =data_sesion
+        crl.setopt(crl.URL, 'https://taecel.com/app/api/RequestTXN')
+        data.producto       =vals["name"]
+        data.referencia     =vals["referencia"]
+        pf                  =urlencode(data)
         crl.setopt(crl.POSTFIELDS, pf)
         crl.perform()
+        
+        print("###########################################")
+        print("DATA CURL",crl)
+        print("DATA CURL",crl.getinfo(crl)))    
+        print("DATA CURL",crl.getinfo(crl.RESPONSE_CODE)))
+
+
+
         crl.close()                
 
-        return super(taecel, self).create(vals)        
+        #return super(taecel, self).create(vals)        
