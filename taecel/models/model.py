@@ -38,13 +38,12 @@ class taecel(models.Model):
         pf                  =urlencode(data)
         crl.setopt(crl.POSTFIELDS, pf)
         crl.perform()
+        data_curl=crl.getinfo(crl.RESPONSE_CODE)
         
-        print("###########################################")
-        print("DATA CURL",crl)
+        print("##########",data_curl)
+        #print("DATA CURL",crl)
         #print("DATA CURL",crl.getinfo(crl))    
-        print("DATA CURL",crl.getinfo(crl.RESPONSE_CODE))
-
-
+        #print("DATA CURL",crl.getinfo(crl.RESPONSE_CODE))
 
         crl.close()                
 
