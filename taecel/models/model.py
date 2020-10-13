@@ -59,7 +59,7 @@ class taecel(models.Model):
 		    #"status":       data_json2["data"]["Status"]
         }
 
-        if(data_taecel["transID"]!=""):    
+        if(data_taecel["mensaje1"]!=""):    
         #if(data_taecel["transID"]!="" and data_taecel["mensaje2"]=="Recarga Exitosa" and data_taecel["status"]=="Exitosa"):
-            print("transID==",data_taecel["transID"])
+            print("mensaje1==",data_taecel["mensaje1"])
             return super(taecel, self).create(data_taecel)        
