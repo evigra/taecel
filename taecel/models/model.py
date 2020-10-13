@@ -48,8 +48,8 @@ class taecel(models.Model):
         data_json2                  = data_requests.json()
 
         data_taecel                 ={
-    		"name":         val["name"],
-	    	"referencia":   val["referencia"],
+    		"name":         vals["name"],
+	    	"referencia":   vals["referencia"],
 		    "mensaje1":     data_json1["message"],
 		    "transID":      data_json1["data"]["transID"],
 		    "folio":        data_json2["data"]["Folio"],
