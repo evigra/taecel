@@ -26,7 +26,7 @@ class taecel(models.Model):
         print('===========',vals)
         
         crl                     = pycurl.Curl()
-        response                = StringIO.StringIO()
+        #response                = StringIO.StringIO()
         
         data_sesion = {
             'key':          self.env['ir.config_parameter'].get_param('taecel_key',''),
@@ -38,17 +38,14 @@ class taecel(models.Model):
         data["producto"]        =vals["name"]
         data["referencia"]      =vals["referencia"]
         pf                      =urlencode(data)
-        crl.setopt(crl.WRITEFUNCTION, response.write)
+        #crl.setopt(crl.WRITEFUNCTION, response.write)
         crl.setopt(crl.POSTFIELDS, pf)
         crl.perform()
-        data_curl=response.getvalue()
-
-
-
+        #data_curl=response.getvalue()
 
 
         
-        print("##########",data_curl)
+        #print("##########",data_curl)
         #print("DATA CURL",crl)
         #print("DATA CURL",crl.getinfo(crl))    
         #print("DATA CURL",crl.getinfo(crl.RESPONSE_CODE))
