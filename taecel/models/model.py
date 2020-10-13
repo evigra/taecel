@@ -8,6 +8,7 @@ from odoo import api, fields, models, _
 
 from urllib.parse import urlencode
 import pycurl
+import StringIO
 
 class taecel(models.Model):
     _name = "taecel"
@@ -24,21 +25,28 @@ class taecel(models.Model):
     def create(self,vals):
         print('===========',vals)
         
-        crl = pycurl.Curl()
+        crl                     = pycurl.Curl()
+        response                = StringIO.StringIO()
         
         data_sesion = {
             'key':          self.env['ir.config_parameter'].get_param('taecel_key',''),
             'nip':          self.env['ir.config_parameter'].get_param('taecel_nip','')
         }
 
-        data                =data_sesion
+        data                    =data_sesion
         crl.setopt(crl.URL, 'https://taecel.com/app/api/RequestTXN')
-        data["producto"]       =vals["name"]
-        data["referencia"]     =vals["referencia"]
-        pf                  =urlencode(data)
+        data["producto"]        =vals["name"]
+        data["referencia"]      =vals["referencia"]
+        pf                      =urlencode(data)
+        crl.setopt(crl.WRITEFUNCTION, response.write)
         crl.setopt(crl.POSTFIELDS, pf)
         crl.perform()
-        data_curl=crl.getinfo(crl.RESPONSE_CODE)
+        data_curl=response.getvalue()
+
+
+
+
+
         
         print("##########",data_curl)
         #print("DATA CURL",crl)
