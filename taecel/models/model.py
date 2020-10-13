@@ -22,37 +22,7 @@ class taecel(models.Model):
     status                                      = fields.Char('status', size=150)
     time                                        = fields.Datetime('Time')
     def create(self,vals):
-        print('===========',vals)
-        """
-        crl                     = pycurl.Curl()
-        #response                = StringIO.StringIO()
-        
-        data_sesion = {
-            'key':          self.env['ir.config_parameter'].get_param('taecel_key',''),
-            'nip':          self.env['ir.config_parameter'].get_param('taecel_nip','')
-        }
-
-        data                    =data_sesion
-        crl.setopt(crl.URL, 'https://taecel.com/app/api/RequestTXN')
-        data["producto"]        =vals["name"]
-        data["referencia"]      =vals["referencia"]
-        pf                      =urlencode(data)
-        #crl.setopt(crl.WRITEFUNCTION, response.write)
-        crl.setopt(crl.POSTFIELDS, pf)
-        crl.perform()
-        #data_curl=response.getvalue()
-
-
-        
-        #print("##########",data_curl)
-        #print("DATA CURL",crl)
-        #print("DATA CURL",crl.getinfo(crl))    
-        #print("DATA CURL",crl.getinfo(crl.RESPONSE_CODE))
-
-        crl.close()                 
-        """
-        
-        
+        print('========================================================')
 
         url = 'https://taecel.com/app/api/RequestTXN'
         data_sesion = {
@@ -69,11 +39,6 @@ class taecel(models.Model):
         data_json                          = data_requests.json()
         print(data_json)
 
-
-        #for position_row in json_positions:            
-        
-        
-        
         
 
-        #return super(taecel, self).create(vals)        
+        return super(taecel, self).create(vals)        
