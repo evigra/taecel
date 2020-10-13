@@ -41,12 +41,12 @@ class taecel(models.Model):
 
         url                         = 'https://taecel.com/app/api/StatusTXN'
         data_post                   =data_sesion
-        data_post["transID"]        =data_json1["data"]["transID"]
+        #data_post["transID"]        =data_json1["data"]["transID"]
 
         #data_requests               = requests.post(url, data = data_post)
         #data_requests.raise_for_status()
         #data_json2                  = data_requests.json()
-        print("data_json1=",data_json1["data"])
+        print("data_json1=",data_json1.data.)
 
         data_taecel                 ={
     		"name":         vals["name"],
