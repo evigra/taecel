@@ -22,9 +22,6 @@ class taecel(models.Model):
     status                                      = fields.Char('status', size=150)
     time                                        = fields.Datetime('Time')
 
-
-
-
     def create(self,vals):
         data_sesion = {
             'key':          self.env['ir.config_parameter'].get_param('taecel_key',''),
@@ -41,8 +38,6 @@ class taecel(models.Model):
         data_requests.raise_for_status()
         data_json1                  = data_requests.json()
         
-
-
 
         url                         = 'https://taecel.com/app/api/StatusTXN'
         data_post                   =data_sesion
@@ -63,7 +58,5 @@ class taecel(models.Model):
         }
 
         if(data_taecel["mensaje2"]=="Recarga Exitosa" and data_taecel["status"]=="Exitosa"):
-            #{'data': {'transID': '201000810110'}, 'message': 'Consulta Exitosa', 'extra': None, 'error': 0, 'success': True}
-            #if($respuesta["mensaje2"]=="Recarga Exitosa" AND $respuesta["status"]=="Exitosa")
-            print(data_taecel)
+            print(data_taecel["mensaje2"])
             return super(taecel, self).create(data_taecel)        
