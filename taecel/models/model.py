@@ -21,24 +21,49 @@ class taecel(models.Model):
     mensaje2                                    = fields.Char('mensaje2', size=150)
     status                                      = fields.Char('status', size=150)
     time                                        = fields.Datetime('Time')
-    def create(self,vals):
-        print('========================================================')
 
-        url = 'https://taecel.com/app/api/RequestTXN'
+
+
+
+    def create(self,vals):
         data_sesion = {
             'key':          self.env['ir.config_parameter'].get_param('taecel_key',''),
             'nip':          self.env['ir.config_parameter'].get_param('taecel_nip','')
         }
-        data_post                    =data_sesion
-        data_post["producto"]        =vals["name"]
-        data_post["referencia"]      =vals["referencia"]
+        
+        
+        url                         = 'https://taecel.com/app/api/RequestTXN'
+        data_post                   =data_sesion
+        data_post["producto"]       =vals["name"]
+        data_post["referencia"]     =vals["referencia"]
 
-
-        data_requests = requests.post(url, data = data_post)
+        data_requests               = requests.post(url, data = data_post)
         data_requests.raise_for_status()
-        data_json                          = data_requests.json()
-        print(data_json)
-
+        data_json1                  = data_requests.json()
         
 
-        return super(taecel, self).create(vals)        
+
+
+        url                         = 'https://taecel.com/app/api/StatusTXN'
+        data_post                   =data_sesion
+        data_post["transID"]        =data_json1["data"]["transID"]
+
+        data_requests               = requests.post(url, data = data_post)
+        data_requests.raise_for_status()
+        data_json2                  = data_requests.json()
+
+        data_taecel                 ={
+    		"name":         val["name"],
+	    	"referencia":   val["referencia"],
+		    "mensaje1":     data_json1["message"],
+		    "transID":      data_json1["data"]["transID"],
+		    "folio":        data_json2["data"]["Folio"],
+		    "mensaje2":     data_json2["message"],
+		    "status":       data_json2["data"]["Status"]
+        }
+
+        if(data_taecel["mensaje2"]=="Recarga Exitosa" and data_taecel["status"]=="Exitosa"):
+            #{'data': {'transID': '201000810110'}, 'message': 'Consulta Exitosa', 'extra': None, 'error': 0, 'success': True}
+            #if($respuesta["mensaje2"]=="Recarga Exitosa" AND $respuesta["status"]=="Exitosa")
+            print(data_taecel)
+            return super(taecel, self).create(data_taecel)        
