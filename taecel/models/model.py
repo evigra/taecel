@@ -43,20 +43,21 @@ class taecel(models.Model):
         data_post                   =data_sesion
         data_post["transID"]        =data_json1["data"]["transID"]
 
-        data_requests               = requests.post(url, data = data_post)
-        data_requests.raise_for_status()
-        data_json2                  = data_requests.json()
+        #data_requests               = requests.post(url, data = data_post)
+        #data_requests.raise_for_status()
+        #data_json2                  = data_requests.json()
 
         data_taecel                 ={
     		"name":         vals["name"],
 	    	"referencia":   vals["referencia"],
 		    "mensaje1":     data_json1["message"],
 		    "transID":      data_json1["data"]["transID"],
-		    "folio":        data_json2["data"]["Folio"],
-		    "mensaje2":     data_json2["message"],
-		    "status":       data_json2["data"]["Status"]
+		    #"folio":        data_json2["data"]["Folio"],
+		    #"mensaje2":     data_json2["message"],
+		    #"status":       data_json2["data"]["Status"]
         }
 
-        if(data_taecel["mensaje2"]=="Recarga Exitosa" and data_taecel["status"]=="Exitosa"):
+        if(data_taecel["transID"]!=""):    
+        #if(data_taecel["transID"]!="" and data_taecel["mensaje2"]=="Recarga Exitosa" and data_taecel["status"]=="Exitosa"):
             print(data_taecel["mensaje2"])
             return super(taecel, self).create(data_taecel)        
