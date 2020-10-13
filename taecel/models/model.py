@@ -41,7 +41,7 @@ class taecel(models.Model):
         
         print("###########################################")
         print("DATA CURL",crl)
-        print("DATA CURL",crl.getinfo(crl))    
+        #print("DATA CURL",crl.getinfo(crl))    
         print("DATA CURL",crl.getinfo(crl.RESPONSE_CODE))
 
 
