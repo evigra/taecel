@@ -60,5 +60,5 @@ class taecel(models.Model):
 
         if(data_taecel["transID"]!=""):    
         #if(data_taecel["transID"]!="" and data_taecel["mensaje2"]=="Recarga Exitosa" and data_taecel["status"]=="Exitosa"):
-            print(data_taecel["mensaje2"])
+            print("transID==",data_taecel["transID"])
             return super(taecel, self).create(data_taecel)        
