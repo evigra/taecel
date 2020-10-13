@@ -33,8 +33,8 @@ class taecel(models.Model):
 
         data                =data_sesion
         crl.setopt(crl.URL, 'https://taecel.com/app/api/RequestTXN')
-        data.producto       =vals["name"]
-        data.referencia     =vals["referencia"]
+        data["producto"]       =vals["name"]
+        data["referencia"]     =vals["referencia"]
         pf                  =urlencode(data)
         crl.setopt(crl.POSTFIELDS, pf)
         crl.perform()
