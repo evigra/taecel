@@ -52,7 +52,8 @@ class taecel(models.Model):
     		"name":         vals["name"],
 	    	"referencia":   vals["referencia"],
 		    "mensaje1":     data_json1["message"],
-		    "transID":      data_json1["data"]["transID"],
+		    #"transID":      data_json1["data"]["transID"],
+		    
 		    #"folio":        data_json2["data"]["Folio"],
 		    #"mensaje2":     data_json2["message"],
 		    #"status":       data_json2["data"]["Status"]
