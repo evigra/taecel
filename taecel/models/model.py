@@ -8,7 +8,7 @@ from odoo import api, fields, models, _
 
 from urllib.parse import urlencode
 import pycurl
-import StringIO
+#import StringIO
 
 class taecel(models.Model):
     _name = "taecel"
