@@ -8,6 +8,7 @@ from odoo import api, fields, models, _
 
 from urllib.parse import urlencode
 import pycurl
+import json
 
 class taecel(models.Model):
     _name = "taecel"
@@ -39,15 +40,23 @@ class taecel(models.Model):
         data_json1                  = data_requests.json()
         
 
+
+
+
+
         url                         = 'https://taecel.com/app/api/StatusTXN'
         data_post                   =data_sesion
+        data                        =json.loads(data_json1["data"])
+        data_post["transID"]        =data["transID"]
 
-        data_post["transID"]        =data_json1["data"].transID
+
+
+
 
         #data_requests               = requests.post(url, data = data_post)
         #data_requests.raise_for_status()
         #data_json2                  = data_requests.json()
-        print("data_json1_data[transID]=",data_json1_data["transID"])
+        print("data_json1_data[transID]=",data["transID"])
 
         data_taecel                 ={
     		"name":         vals["name"],
