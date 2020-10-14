@@ -46,7 +46,7 @@ class taecel(models.Model):
         #data_requests               = requests.post(url, data = data_post)
         #data_requests.raise_for_status()
         #data_json2                  = data_requests.json()
-        print("data_json1[data]=",data_json1["data"])
+        print("data_json1[data][transID]=",data_json1["data"]["transID"])
 
         data_taecel                 ={
     		"name":         vals["name"],
