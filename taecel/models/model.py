@@ -24,6 +24,12 @@ class taecel(models.Model):
     time                                        = fields.Datetime('Time')
 
     def create(self,vals):
+        data_taecel                 ={
+    		"name":         vals["name"],
+        	"referencia":   vals["referencia"],
+            "status":       "Error"
+        }
+
         data_sesion = {
             'key':          self.env['ir.config_parameter'].get_param('taecel_key',''),
             'nip':          self.env['ir.config_parameter'].get_param('taecel_nip','')
@@ -39,6 +45,8 @@ class taecel(models.Model):
         data_json1                  = data_requests.json()
         
         if("data" in data_json1):
+            data_taecel["mensaje1"]     =data_json1["message"]
+        
             url                         = 'https://taecel.com/app/api/StatusTXN'
             data_post                   =data_sesion
             data                        =data_json1["data"]
@@ -50,17 +58,10 @@ class taecel(models.Model):
                 if("data" in data_json2):        
                     data                        =data_json2["data"]
                     if("Status" in data):
-                        data_taecel                 ={
-                    		"name":         vals["name"],
-	                    	"referencia":   vals["referencia"],
-		                    "mensaje1":     data_json1["message"],
-		                    "transID":      data_post["transID"],		   
-		                    "folio":        data["Folio"],
-		                    "mensaje2":     data_json2["message"],
-		                    "status":       data["Status"]
-                        }
-
-                        #if(data_taecel["transID"]!="" ):
-                        if(data_taecel["transID"]!="" and data_taecel["mensaje2"]=="Recarga Exitosa" and data_taecel["status"]=="Exitosa"):
-                            print("data_taecel = ",data_taecel)
-                            return super(taecel, self).create(data_taecel)        
+                        data_taecel["transID"]      =data_post["transID"]		   
+                        data_taecel["folio"]        =data["Folio"]
+                        data_taecel["mensaje2"]     =data_json2["message"]
+                        data_taecel["status"]       =data["Status"]
+                    
+        return super(taecel, self).create(data_taecel)                    
+                                
